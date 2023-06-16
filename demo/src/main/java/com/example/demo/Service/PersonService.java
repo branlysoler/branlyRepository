@@ -27,6 +27,10 @@ public class PersonService {
         iPersonRepository.deleteById(id);
     }
 
+    public void deleteAll(){
+        iPersonRepository.deleteAll();
+    }
+
     public List<Person> findAll(){
         return iPersonRepository.findAll();
     }
