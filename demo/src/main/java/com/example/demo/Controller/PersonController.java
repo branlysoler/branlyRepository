@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import com.example.demo.Entity.Person;
 import com.example.demo.Service.PersonService;
 
@@ -40,6 +41,12 @@ public class PersonController {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteById(@PathVariable Long id){
         personService.deleteById(id);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/deleteAll")
+    public ResponseEntity<?> deleteAll(){
+        personService.deleteAll();
         return ResponseEntity.ok().build();
     }
 
