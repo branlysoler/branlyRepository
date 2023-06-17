@@ -1,5 +1,6 @@
 package com.example.demo.Entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -10,26 +11,25 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.NonNull;
 
 @Entity
-@Table(name = "category")
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
-@ToString
-public class Category {
+@Table(name = "category")
+public class Category implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NonNull
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
+    @NonNull
     @Column(name = "description", nullable = false)
     private String description;
 
