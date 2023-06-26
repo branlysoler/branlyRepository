@@ -1,9 +1,13 @@
-package com.example.demo.Repository;
+package com.example.demo.repository;
+
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.example.demo.Entity.Category;
+import com.example.demo.entity.Category;
 
 public interface ICategoryRepository extends JpaRepository<Category, Long>{
+
+    Optional<Category> findByName(String name);
     
 }

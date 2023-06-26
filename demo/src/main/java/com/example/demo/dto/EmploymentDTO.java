@@ -1,47 +1,29 @@
-package com.example.demo.entity;
+package com.example.demo.dto;
 
 import java.io.Serializable;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Entity
-@Table(name = "employment")
 @Getter
 @Setter
 @NoArgsConstructor
 @ToString
-public class Employment implements Serializable{
+@EqualsAndHashCode
+public class EmploymentDTO implements Serializable{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
     private String name;
 
-    @Column
     private String description;
 
-    @Column(nullable = false)
     private Integer level;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_category", nullable = false)
-    private Category category;
-    
+    private CategoryDTO category;       
 
     /**
      * @return Long return the id
@@ -100,17 +82,16 @@ public class Employment implements Serializable{
     }
 
     /**
-     * @return Category return the category
+     * @return CategoryDTO return the category
      */
-    public Category getCategory() {
+    public CategoryDTO getCategory() {
         return category;
     }
 
     /**
      * @param category the category to set
      */
-    public void setCategory(Category category) {
+    public void setCategory(CategoryDTO category) {
         this.category = category;
     }
-
 }

@@ -1,41 +1,33 @@
-package com.example.demo.entity;
+package com.example.demo.dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
-@Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
-@Table(name = "category")
-public class Category implements Serializable{
+@ToString
+@EqualsAndHashCode
+public class CategoryDTO implements Serializable{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
     private String name;
 
-    @Column
     private String description;
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    private List<Employment> employments;
+    @JsonIgnore
+    private List<EmploymentDTO> employments = new ArrayList<>();
     
-
     /**
      * @return Long return the id
      */
@@ -79,17 +71,16 @@ public class Category implements Serializable{
     }
 
     /**
-     * @return List<Employment> return the employments
+     * @return List<EmploymentDTO> return the employments
      */
-    public List<Employment> getEmployments() {
+    public List<EmploymentDTO> getEmployments() {
         return employments;
     }
 
     /**
      * @param employments the employments to set
      */
-    public void setEmployments(List<Employment> employments) {
+    public void setEmployments(List<EmploymentDTO> employments) {
         this.employments = employments;
     }
-
 }
